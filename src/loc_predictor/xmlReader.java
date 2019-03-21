@@ -81,7 +81,7 @@ public class xmlReader {
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
-
+            
         Element parent = (Element) document.getElementsByTagName("Model").item(0);
         NodeList list = parent.getElementsByTagName("Operation");
 
