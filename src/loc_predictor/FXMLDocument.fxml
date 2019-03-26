@@ -12,8 +12,8 @@
          <children>
             <Button fx:id="btn_upload" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#btn_upload" prefHeight="57.0" prefWidth="145.0" text="upload xml document" />
             <ProgressIndicator fx:id="progressBar" layoutX="72.0" layoutY="198.0" progress="0.0" />
-            <Button fx:id="btn_calc" layoutX="16.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" text="Calculate" />
-            <Label fx:id="file" layoutX="17.0" layoutY="102.0" prefHeight="18.0" prefWidth="145.0" text="file.xml" />
+            <Button fx:id="btn_calc" layoutX="16.0" layoutY="148.0" mnemonicParsing="false" onAction="#btn_calc" prefHeight="32.0" prefWidth="145.0" text="Calculate" />
+            <Label fx:id="L_file" layoutX="17.0" layoutY="102.0" prefHeight="18.0" prefWidth="145.0" text="file.xml" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="196.0" layoutY="40.0" prefHeight="365.0" prefWidth="493.0">
@@ -21,7 +21,7 @@
             <AnchorPane layoutX="330.0" layoutY="275.0" prefHeight="110.0" prefWidth="152.0" style="-fx-background-color: #9FEAF6;">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="5.0" prefHeight="18.0" prefWidth="127.0" text="LOC ESTIMATION" />
-                  <Label fx:id="L_est" alignment="CENTER" layoutX="63.0" layoutY="52.0" prefWidth="29.0" text="est" textAlignment="CENTER" />
+                  <Label fx:id="L_est" alignment="CENTER" layoutX="-1.0" layoutY="52.0" prefHeight="18.0" prefWidth="152.0" text="est" textAlignment="CENTER" />
                </children>
             </AnchorPane>
             <Label layoutX="34.0" layoutY="24.0" text="Classes" />

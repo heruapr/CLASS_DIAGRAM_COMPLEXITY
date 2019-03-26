@@ -82,7 +82,8 @@ public class xmlReader {
             Element attr = (Element) list.item(i);
             //System.out.println((i + 1) + attr.getAttribute("Name"));
         }
-        return i;
+        int avg = i/sumClasses();
+        return avg;
     }
 
     // NUMBER OF METHODS
@@ -102,7 +103,8 @@ public class xmlReader {
             Element methods = (Element) list.item(i);
             // System.out.println((i + 1) + methods.getAttribute("Name"));
         }
-        return i;
+        int avg = i/sumClasses();
+        return avg;
     }
 
     //jenis method setter,getter
@@ -140,8 +142,8 @@ public class xmlReader {
         System.out.println("Mengandung set : " + setter);
         System.out.println("getter : " + get);
         System.out.println("setter : " + set);
-        xmlReader.set=set;
-        xmlReader.get=get;
+        xmlReader.set=set/sumClasses();
+        xmlReader.get=get/sumClasses();
 
     }
 
@@ -184,7 +186,7 @@ public class xmlReader {
             }
         }
         System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
-        xmlReader.cons=cons;
+        xmlReader.cons=cons/sumClasses();
     }
 
     // Association

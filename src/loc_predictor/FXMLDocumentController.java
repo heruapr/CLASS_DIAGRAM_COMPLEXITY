@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
@@ -29,7 +30,7 @@ public class FXMLDocumentController implements Initializable {
 
     xmlReader reader = new xmlReader();
     calculate_LOC cal = new calculate_LOC();
-    
+
     @FXML
     private Label label;
     @FXML
@@ -39,7 +40,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btn_calc;
     @FXML
-    private Label file;
+    private Label L_file;
     @FXML
     private Label L_est;
     @FXML
@@ -73,13 +74,20 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void btn_upload(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
+    private void btn_upload(ActionEvent event) throws ParserConfigurationException, IOException, SAXException, IllegalArgumentException {
         JFileChooser jfc = new JFileChooser();
         jfc.showOpenDialog(null);
+        //jfc.setFileFilter(new FileNameExtensionFilter("Document File", "xml"));
+
         File file = jfc.getSelectedFile();
         dir = file.getAbsolutePath();
         reader.setDir(dir);
+        L_file.setText(file.getName());
 
+    }
+
+    @FXML
+    private void btn_calc(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
         reader.JMethods();
         reader.Nconstructor();
 
@@ -88,7 +96,7 @@ public class FXMLDocumentController implements Initializable {
         int assoc = reader.Nasso();
         int gener = reader.Ngener();
         int methods = reader.Nmethods();
-        int set =  reader.set;
+        int set = reader.set;
         int get = reader.get;
         int cons = reader.cons;
 
@@ -109,9 +117,10 @@ public class FXMLDocumentController implements Initializable {
         L_set.setText(Sset);
         L_get.setText(Sget);
         L_cons.setText(Scons);
-        
-        L_est.setText(Integer.toString(cal.calculate()));
 
+        //estimasi loc 
+        L_est.setText(Integer.toString(cal.calculate()));
+        System.out.println(cal.calculate());
     }
 
 }

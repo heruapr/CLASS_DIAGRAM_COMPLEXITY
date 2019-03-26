@@ -29,8 +29,11 @@ public class calculate_LOC {
         int set = reader.set;
         int get = reader.get;
         int cons = reader.cons;
-
-        int est = classes + attr;
+        int est = 0;
+        double estTemp = (-4379.66) + (181.029 * classes)
+                + (142.469 * attr) - (3812.501 * methods) + (8596.627 * set)
+                + (6611.383 * cons) + (7166.288 * gener) - (318.648 * assoc);
+        est = (int) (estTemp);
 
         return est;
     }
