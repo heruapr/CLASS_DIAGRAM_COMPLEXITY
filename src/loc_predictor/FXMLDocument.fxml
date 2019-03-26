@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="405.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loc_predictor.FXMLDocumentController">
@@ -11,34 +10,36 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <AnchorPane layoutX="14.0" layoutY="40.0" prefHeight="385.0" prefWidth="173.0" style="-fx-background-color: #9FEAF6;">
          <children>
-            <Button fx:id="uploadBtn" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#uploadBtn" onMouseClicked="#uploadBtn" prefHeight="57.0" prefWidth="145.0" text="upload xml document" />
+            <Button fx:id="btn_upload" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#btn_upload" prefHeight="57.0" prefWidth="145.0" text="upload xml document" />
             <ProgressIndicator fx:id="progressBar" layoutX="72.0" layoutY="198.0" progress="0.0" />
-            <Button fx:id="CalculateBtn" layoutX="16.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" text="Calculate" />
+            <Button fx:id="btn_calc" layoutX="16.0" layoutY="148.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="145.0" text="Calculate" />
             <Label fx:id="file" layoutX="17.0" layoutY="102.0" prefHeight="18.0" prefWidth="145.0" text="file.xml" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="195.0" layoutY="40.0" prefHeight="365.0" prefWidth="493.0">
+      <AnchorPane layoutX="196.0" layoutY="40.0" prefHeight="365.0" prefWidth="493.0">
          <children>
-            <TextField layoutX="34.0" layoutY="49.0" prefHeight="26.0" prefWidth="127.0" text="0" />
-            <TextField layoutX="34.0" layoutY="134.0" prefHeight="26.0" prefWidth="127.0" text="0" />
-            <TextField layoutX="177.0" layoutY="49.0" prefHeight="26.0" prefWidth="127.0" text="0" />
-            <TextField layoutX="183.0" layoutY="134.0" prefHeight="26.0" prefWidth="127.0" text="0" />
-            <TextField layoutX="328.0" layoutY="49.0" prefHeight="26.0" prefWidth="127.0" text="0" />
-            <TextField layoutX="328.0" layoutY="134.0" prefHeight="26.0" prefWidth="127.0" text="0" />
-            <TextField layoutX="30.0" layoutY="215.0" prefHeight="26.0" prefWidth="127.0" text="0" />
             <AnchorPane layoutX="330.0" layoutY="275.0" prefHeight="110.0" prefWidth="152.0" style="-fx-background-color: #9FEAF6;">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="5.0" prefHeight="18.0" prefWidth="127.0" text="LOC ESTIMATION" />
-                  <Label alignment="CENTER" layoutX="63.0" layoutY="52.0" prefWidth="29.0" text="est" textAlignment="CENTER" />
+                  <Label fx:id="L_est" alignment="CENTER" layoutX="63.0" layoutY="52.0" prefWidth="29.0" text="est" textAlignment="CENTER" />
                </children>
             </AnchorPane>
             <Label layoutX="34.0" layoutY="24.0" text="Classes" />
-            <Label fx:id="method" layoutX="177.0" layoutY="24.0" text="Methods (Average)" />
-            <Label fx:id="methodSet" layoutX="328.0" layoutY="24.0" text="Set Methods (Average)" />
             <Label layoutX="34.0" layoutY="109.0" text="Attributes (Average)" />
-            <Label layoutX="183.0" layoutY="109.0" text="Associations" />
-            <Label layoutX="328.0" layoutY="109.0" text="Constructors" />
-            <Label layoutX="30.0" layoutY="192.0" text="Generalization" />
+            <Label layoutX="179.0" layoutY="109.0" text="Constructors" />
+            <Label layoutX="328.0" layoutY="109.0" text="Get Methods (Average)" />
+            <Label layoutX="34.0" layoutY="192.0" text="Generalization" />
+            <Label layoutX="179.0" layoutY="192.0" text="Associations" />
+            <Label fx:id="L_class" layoutX="34.0" layoutY="53.0" text="0" />
+            <Label fx:id="L_methods" layoutX="179.0" layoutY="53.0" text="0" />
+            <Label fx:id="L_set" layoutX="329.0" layoutY="53.0" text="0" />
+            <Label fx:id="L_attr" layoutX="34.0" layoutY="138.0" text="0" />
+            <Label fx:id="L_cons" layoutX="179.0" layoutY="138.0" text="0" />
+            <Label fx:id="L_get" layoutX="329.0" layoutY="138.0" text="0" />
+            <Label fx:id="L_gen" layoutX="34.0" layoutY="221.0" text="0" />
+            <Label fx:id="L_assoc" layoutX="179.0" layoutY="221.0" text="0" />
+            <Label layoutX="179.0" layoutY="24.0" text="Methods" />
+            <Label layoutX="328.0" layoutY="24.0" text="Set Methods (Average)" />
          </children>
       </AnchorPane>
       <Label layoutX="282.0" layoutY="14.0" text="LINE OF CODE PREDICTOR" />

@@ -18,28 +18,36 @@ import java.io.IOException;
 
 public class xmlReader {
 
-    public static void main(String[] args) throws ParserConfigurationException,
-            IOException, SAXException {
+    static String dir;
 
-        int classes = sumClasses();
-        int attr = avgAttributes();
-        int methods = Nmethods();
-        int asso = Nasso();
-        int gener= Ngener();
-
-        System.out.println("Jumlah class = " + classes);
-        System.out.println("Jumlah attribute = " + attr);
-        System.out.println("Jumlah methods = " + methods);
-        System.out.println("Jumlah association "+ asso);
-        System.out.println("Jumlah generalization "+gener);
-        JMethods();
-        Nconstructor();
+    public static void setDir(String dir) {
+        xmlReader.dir = dir;
     }
 
+//    public static void setDir(String dir) {
+//        dir = dir;
+//    }
+//    public static void main(String[] args) throws ParserConfigurationException,
+//            IOException, SAXException {
+//        int classes = sumClasses();
+//        int attr = avgAttributes();
+//        int methods = Nmethods();
+//        int asso = Nasso();
+//        int gener = Ngener();
+//
+//        System.out.println("Jumlah class = " + classes);
+//        System.out.println("Jumlah attribute = " + attr);
+//        System.out.println("Jumlah methods = " + methods);
+//        System.out.println("Jumlah association " + asso);
+//        System.out.println("Jumlah generalization " + gener);
+//        JMethods();
+//        Nconstructor();
+    //}
     // NUMBER OF CLASSES
-    private static int sumClasses() throws ParserConfigurationException,
+    public static int sumClasses() throws ParserConfigurationException,
             IOException, SAXException {
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
@@ -55,10 +63,11 @@ public class xmlReader {
     }
 
     // NUMBER OF Attributes
-    private static int avgAttributes() throws ParserConfigurationException,
+    public static int avgAttributes() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        // File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
@@ -74,14 +83,15 @@ public class xmlReader {
     }
 
     // NUMBER OF METHODS
-    private static int Nmethods() throws ParserConfigurationException,
+    public static int Nmethods() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+//        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
-            
+
         Element parent = (Element) document.getElementsByTagName("Model").item(0);
         NodeList list = parent.getElementsByTagName("Operation");
 
@@ -93,9 +103,10 @@ public class xmlReader {
     }
 
     //jenis method setter,getter
-    private static void JMethods() throws ParserConfigurationException,
+    public static void JMethods() throws ParserConfigurationException,
             IOException, SAXException {
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+//        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
@@ -119,18 +130,18 @@ public class xmlReader {
             } else if (arr[i].substring(0, 3).equalsIgnoreCase("get")) {
                 getter = arr[i];
                 get++;
-                System.out.println("Mengandung get : " + getter );
+                System.out.println("Mengandung get : " + getter);
 
             }
         }
         System.out.println("Mengandung set : " + setter);
-        System.out.println("getter : "+get);
-        System.out.println("setter : "+set);
-        
+        System.out.println("getter : " + get);
+        System.out.println("setter : " + set);
+
     }
 
     //JUMLAH CONSTRUCTOR
-    private static void Nconstructor() throws ParserConfigurationException,
+    public static void Nconstructor() throws ParserConfigurationException,
             IOException, SAXException {
         File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -167,11 +178,11 @@ public class xmlReader {
                 }
             }
         }
-             System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
+        System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
     }
-    
-     // Association
-     private static int Nasso() throws ParserConfigurationException,
+
+    // Association
+    public static int Nasso() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
         File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -186,11 +197,11 @@ public class xmlReader {
             Element rel = (Element) list.item(i);
             //System.out.println((i + 1) + rel.getAttribute("id"));
         }
-        return i/2;
+        return i / 2;
     }
-     
-     // Generalization
-     private static int Ngener() throws ParserConfigurationException,
+
+    // Generalization
+    public static int Ngener() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
         File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -203,9 +214,10 @@ public class xmlReader {
 
         for (i = 0; i < list.getLength(); i++) {
             Element rel = (Element) list.item(i);
-           // System.out.println((i + 1) + rel.getAttribute("id"));
+            // System.out.println((i + 1) + rel.getAttribute("id"));
         }
-        return i/2;
+        return i / 2;
     }
-
 }
+
+//}
