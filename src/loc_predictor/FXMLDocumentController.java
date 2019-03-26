@@ -26,8 +26,10 @@ import org.xml.sax.SAXException;
  * @author HP PC
  */
 public class FXMLDocumentController implements Initializable {
-    
+
     xmlReader reader = new xmlReader();
+    calculate_LOC cal = new calculate_LOC();
+    
     @FXML
     private Label label;
     @FXML
@@ -56,7 +58,7 @@ public class FXMLDocumentController implements Initializable {
     private Label L_gen;
     @FXML
     private Label L_assoc;
-    
+
     String dir;
 
     /**
@@ -67,9 +69,9 @@ public class FXMLDocumentController implements Initializable {
         // TODO
 
         reader.setDir(dir);
-        
+
     }
-    
+
     @FXML
     private void btn_upload(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
         JFileChooser jfc = new JFileChooser();
@@ -77,27 +79,39 @@ public class FXMLDocumentController implements Initializable {
         File file = jfc.getSelectedFile();
         dir = file.getAbsolutePath();
         reader.setDir(dir);
-        
+
+        reader.JMethods();
+        reader.Nconstructor();
+
         int classes = reader.sumClasses();
         int attr = reader.avgAttributes();
-        reader.JMethods();
         int assoc = reader.Nasso();
-        reader.Nconstructor();
         int gener = reader.Ngener();
         int methods = reader.Nmethods();
-        
+        int set =  reader.set;
+        int get = reader.get;
+        int cons = reader.cons;
+
         String sClass = Integer.toString(classes);
         String Sattr = Integer.toString(attr);
         String asso = Integer.toString(assoc);
         String gen = Integer.toString(gener);
         String method = Integer.toString(methods);
-        
+        String Sset = Integer.toString(reader.set);
+        String Sget = Integer.toString(reader.get);
+        String Scons = Integer.toString(reader.cons);
+
         L_class.setText(sClass);
         L_attr.setText(Sattr);
         L_assoc.setText(asso);
         L_gen.setText(gen);
         L_methods.setText(method);
+        L_set.setText(Sset);
+        L_get.setText(Sget);
+        L_cons.setText(Scons);
         
+        L_est.setText(Integer.toString(cal.calculate()));
+
     }
-    
+
 }

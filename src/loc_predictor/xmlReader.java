@@ -19,6 +19,9 @@ import java.io.IOException;
 public class xmlReader {
 
     static String dir;
+    static int cons;
+    static int set;
+    static int get;
 
     public static void setDir(String dir) {
         xmlReader.dir = dir;
@@ -137,6 +140,8 @@ public class xmlReader {
         System.out.println("Mengandung set : " + setter);
         System.out.println("getter : " + get);
         System.out.println("setter : " + set);
+        xmlReader.set=set;
+        xmlReader.get=get;
 
     }
 
@@ -179,6 +184,7 @@ public class xmlReader {
             }
         }
         System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
+        xmlReader.cons=cons;
     }
 
     // Association
