@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="405.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loc_predictor.FXMLDocumentController">
@@ -11,7 +10,6 @@
       <AnchorPane layoutX="14.0" layoutY="40.0" prefHeight="385.0" prefWidth="173.0" style="-fx-background-color: #9FEAF6;">
          <children>
             <Button fx:id="btn_upload" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#btn_upload" prefHeight="57.0" prefWidth="145.0" text="upload xml document" />
-            <ProgressIndicator fx:id="progressBar" layoutX="72.0" layoutY="198.0" progress="0.0" />
             <Button fx:id="btn_calc" layoutX="16.0" layoutY="148.0" mnemonicParsing="false" onAction="#btn_calc" prefHeight="32.0" prefWidth="145.0" text="Calculate" />
             <Label fx:id="L_file" layoutX="17.0" layoutY="102.0" prefHeight="18.0" prefWidth="145.0" text="file.xml" />
          </children>
@@ -22,11 +20,12 @@
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="5.0" prefHeight="18.0" prefWidth="127.0" text="LOC ESTIMATION" />
                   <Label fx:id="L_est" alignment="CENTER" layoutX="-1.0" layoutY="52.0" prefHeight="18.0" prefWidth="152.0" text="est" textAlignment="CENTER" />
+                  <Label layoutX="36.0" layoutY="70.0" text="Lines of Code" />
                </children>
             </AnchorPane>
             <Label layoutX="34.0" layoutY="24.0" text="Classes" />
             <Label layoutX="34.0" layoutY="109.0" text="Attributes (Average)" />
-            <Label layoutX="179.0" layoutY="109.0" text="Constructors" />
+            <Label layoutX="179.0" layoutY="109.0" text="Constructors (Average)" />
             <Label layoutX="328.0" layoutY="109.0" text="Get Methods (Average)" />
             <Label layoutX="34.0" layoutY="192.0" text="Generalization" />
             <Label layoutX="179.0" layoutY="192.0" text="Associations" />
@@ -38,7 +37,7 @@
             <Label fx:id="L_get" layoutX="329.0" layoutY="138.0" text="0" />
             <Label fx:id="L_gen" layoutX="34.0" layoutY="221.0" text="0" />
             <Label fx:id="L_assoc" layoutX="179.0" layoutY="221.0" text="0" />
-            <Label layoutX="179.0" layoutY="24.0" text="Methods" />
+            <Label layoutX="179.0" layoutY="24.0" text="Methods (Average)" />
             <Label layoutX="328.0" layoutY="24.0" text="Set Methods (Average)" />
          </children>
       </AnchorPane>

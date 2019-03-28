@@ -92,22 +92,22 @@ public class FXMLDocumentController implements Initializable {
         reader.Nconstructor();
 
         int classes = reader.sumClasses();
-        int attr = reader.avgAttributes();
+        double attr = reader.avgAttributes();
         int assoc = reader.Nasso();
         int gener = reader.Ngener();
-        int methods = reader.Nmethods();
-        int set = reader.set;
-        int get = reader.get;
-        int cons = reader.cons;
+        double methods = reader.Nmethods();
+        double set = reader.avgSet;
+        double get = reader.avgGet;
+        double cons = reader.avgCons;
 
         String sClass = Integer.toString(classes);
-        String Sattr = Integer.toString(attr);
+        String Sattr = Double.toString(attr);
         String asso = Integer.toString(assoc);
         String gen = Integer.toString(gener);
-        String method = Integer.toString(methods);
-        String Sset = Integer.toString(reader.set);
-        String Sget = Integer.toString(reader.get);
-        String Scons = Integer.toString(reader.cons);
+        String method = Double.toString(methods);
+        String Sset = Double.toString(set);
+        String Sget = Double.toString(get);
+        String Scons = Double.toString(cons);
 
         L_class.setText(sClass);
         L_attr.setText(Sattr);
@@ -119,6 +119,7 @@ public class FXMLDocumentController implements Initializable {
         L_cons.setText(Scons);
 
         //estimasi loc 
+        
         L_est.setText(Integer.toString(cal.calculate()));
         System.out.println(cal.calculate());
     }

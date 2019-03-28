@@ -19,9 +19,10 @@ import java.io.IOException;
 public class xmlReader {
 
     static String dir;
-    static int cons;
-    static int set;
-    static int get;
+    static double avgCons;
+    static double avgSet;
+    static double avgGet;
+    static double avgMethod;
 
     public static void setDir(String dir) {
         xmlReader.dir = dir;
@@ -66,7 +67,7 @@ public class xmlReader {
     }
 
     // NUMBER OF Attributes
-    public static int avgAttributes() throws ParserConfigurationException,
+    public static double avgAttributes() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
         // File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -82,12 +83,12 @@ public class xmlReader {
             Element attr = (Element) list.item(i);
             //System.out.println((i + 1) + attr.getAttribute("Name"));
         }
-        int avg = i/sumClasses();
+        double avg = (double)i / (double)sumClasses();
         return avg;
     }
 
     // NUMBER OF METHODS
-    public static int Nmethods() throws ParserConfigurationException,
+    public static double Nmethods() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
 //        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -103,8 +104,8 @@ public class xmlReader {
             Element methods = (Element) list.item(i);
             // System.out.println((i + 1) + methods.getAttribute("Name"));
         }
-        int avg = i/sumClasses();
-        return avg;
+        xmlReader.avgMethod = (double)i / (double)sumClasses();
+        return xmlReader.avgMethod;
     }
 
     //jenis method setter,getter
@@ -140,11 +141,12 @@ public class xmlReader {
             }
         }
         System.out.println("Mengandung set : " + setter);
-        System.out.println("getter : " + get);
-        System.out.println("setter : " + set);
-        xmlReader.set=set/sumClasses();
-        xmlReader.get=get/sumClasses();
-
+        System.out.println(set+"   "  +get);
+        xmlReader.avgSet = (double)set / (double)sumClasses();
+        xmlReader.avgGet =  (double)get / (double)sumClasses();
+        
+        System.out.println("getter : " + avgSet);
+        System.out.println("setter : " + avgGet);
     }
 
     //JUMLAH CONSTRUCTOR
@@ -186,7 +188,7 @@ public class xmlReader {
             }
         }
         System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
-        xmlReader.cons=cons/sumClasses();
+         xmlReader.avgCons = (double)cons / (double)sumClasses();
     }
 
     // Association
@@ -205,7 +207,7 @@ public class xmlReader {
             Element rel = (Element) list.item(i);
             //System.out.println((i + 1) + rel.getAttribute("id"));
         }
-        return i / 2;
+        return  i / 2;
     }
 
     // Generalization
