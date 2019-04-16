@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package loc_predictor;
 
+import controller.xmlReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
+import model.getResultLOC;
+import model.getResultsMetrics;
 import org.xml.sax.SAXException;
 
 /**
@@ -29,7 +27,10 @@ import org.xml.sax.SAXException;
 public class FXMLDocumentController implements Initializable {
 
     xmlReader reader = new xmlReader();
-    calculate_LOC cal = new calculate_LOC();
+    getResultLOC resultLOC = new getResultLOC();
+    //calculate_LOC cal = new calculate_LOC();
+
+    getResultsMetrics result = new getResultsMetrics();
 
     @FXML
     private Label label;
@@ -88,17 +89,17 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void btn_calc(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
-        reader.JMethods();
-        reader.Nconstructor();
+//        reader.JMethods();
+//        reader.Nconstructor();
 
-        int classes = reader.sumClasses();
-        double attr = reader.avgAttributes();
-        int assoc = reader.Nasso();
-        int gener = reader.Ngener();
-        double methods = reader.Nmethods();
-        double set = reader.avgSet;
-        double get = reader.avgGet;
-        double cons = reader.avgCons;
+        int classes = result.getClasses();
+        double attr = result.getAttr();
+        int assoc = result.getAssoc();
+        int gener = result.getGener();
+        double methods = result.getMethods();
+        double set = result.getSet();
+        double get = result.getGet();
+        double cons = result.getCons();
 
         String sClass = Integer.toString(classes);
         String Sattr = Double.toString(attr);
@@ -119,9 +120,8 @@ public class FXMLDocumentController implements Initializable {
         L_cons.setText(Scons);
 
         //estimasi loc 
-        
-        L_est.setText(Integer.toString(cal.calculate()));
-        System.out.println(cal.calculate());
+        L_est.setText(Integer.toString(resultLOC.getEst()));
+        //System.out.println(cal.calculate());
     }
 
 }

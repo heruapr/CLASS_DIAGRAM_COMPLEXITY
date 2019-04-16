@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package loc_predictor;
+package controller;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,9 +14,9 @@ import java.io.IOException;
 public class xmlReader {
 
     static String dir;
-    static double avgCons;
-    static double avgSet;
-    static double avgGet;
+    public static double avgCons;
+    public static double avgSet;
+    public static double avgGet;
     static double avgMethod;
 
     public static void setDir(String dir) {
@@ -60,9 +55,10 @@ public class xmlReader {
         int i;
         for (i = 0; i < list.getLength(); i++) {
             Element classes = (Element) list.item(i);
-            //System.out.println((i + 1) + classes.getAttribute("Name"));
+            System.out.println("classes =" + (i + 1) + classes.getAttribute("Name"));
 
         }
+        System.out.println(i);
         return i;
     }
 
@@ -76,14 +72,14 @@ public class xmlReader {
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
 
-        Element parent = (Element) document.getElementsByTagName("Model").item(0);
+        Element parent = (Element) document.getElementsByTagName("Models").item(0);
         NodeList list = parent.getElementsByTagName("Attribute");
 
         for (i = 0; i < list.getLength(); i++) {
             Element attr = (Element) list.item(i);
-            //System.out.println((i + 1) + attr.getAttribute("Name"));
+            System.out.println("attributes" + (i + 1) + attr.getAttribute("Name"));
         }
-        double avg = (double)i / (double)sumClasses();
+        double avg = (double) i / (double) sumClasses();
         return avg;
     }
 
@@ -97,14 +93,14 @@ public class xmlReader {
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
 
-        Element parent = (Element) document.getElementsByTagName("Model").item(0);
+        Element parent = (Element) document.getElementsByTagName("Models").item(0);
         NodeList list = parent.getElementsByTagName("Operation");
 
         for (i = 0; i < list.getLength(); i++) {
             Element methods = (Element) list.item(i);
-            // System.out.println((i + 1) + methods.getAttribute("Name"));
+            System.out.println("method = " + (i + 1) + methods.getAttribute("Name"));
         }
-        xmlReader.avgMethod = (double)i / (double)sumClasses();
+        xmlReader.avgMethod = (double) i / (double) sumClasses();
         return xmlReader.avgMethod;
     }
 
@@ -117,11 +113,11 @@ public class xmlReader {
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
 
-        Element parent = (Element) document.getElementsByTagName("Model").item(0);
+        Element parent = (Element) document.getElementsByTagName("Models").item(0);
         NodeList list = parent.getElementsByTagName("Operation");
         int set = 0;
         int get = 0;
-        String setter = null, getter = null;
+        String setter, getter;
         int i = list.getLength();
         String[] arr = new String[i];
         for (i = 0; i < list.getLength(); i++) {
@@ -140,11 +136,11 @@ public class xmlReader {
 
             }
         }
-        System.out.println("Mengandung set : " + setter);
-        System.out.println(set+"   "  +get);
-        xmlReader.avgSet = (double)set / (double)sumClasses();
-        xmlReader.avgGet =  (double)get / (double)sumClasses();
-        
+        //System.out.println("Mengandung set : " + setter);
+        System.out.println(set + "   " + get);
+        xmlReader.avgSet = (double) set / (double) sumClasses();
+        xmlReader.avgGet = (double) get / (double) sumClasses();
+
         System.out.println("getter : " + avgSet);
         System.out.println("setter : " + avgGet);
     }
@@ -152,7 +148,8 @@ public class xmlReader {
     //JUMLAH CONSTRUCTOR
     public static void Nconstructor() throws ParserConfigurationException,
             IOException, SAXException {
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
@@ -169,7 +166,7 @@ public class xmlReader {
             arr[i] = classes.getAttribute("Name");
         }
         //methods
-        Element parent2 = (Element) document.getElementsByTagName("Model").item(0);
+        Element parent2 = (Element) document.getElementsByTagName("Models").item(0);
         NodeList list2 = parent2.getElementsByTagName("Operation");
         int j = list2.getLength();
         String[] arr1 = new String[j];
@@ -188,46 +185,46 @@ public class xmlReader {
             }
         }
         System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
-         xmlReader.avgCons = (double)cons / (double)sumClasses();
+        xmlReader.avgCons = (double) cons / (double) sumClasses();
     }
 
     // Association
     public static int Nasso() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
 
-        Element parent = (Element) document.getElementsByTagName("ModelChildren").item(0);
+        Element parent = (Element) document.getElementsByTagName("Models").item(0);
         NodeList list = parent.getElementsByTagName("Association");
 
         for (i = 0; i < list.getLength(); i++) {
             Element rel = (Element) list.item(i);
-            //System.out.println((i + 1) + rel.getAttribute("id"));
+            // System.out.println("association = "+(i + 1) + rel.getAttribute("id"));
         }
-        return  i / 2;
+        return i / 2;
     }
 
     // Generalization
     public static int Ngener() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
-        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
+        File file = new File(dir);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = builderFactory.newDocumentBuilder();
         Document document = builder.parse(file);
 
-        Element parent = (Element) document.getElementsByTagName("ModelChildren").item(0);
+        Element parent = (Element) document.getElementsByTagName("Models").item(0); //ModelChildren
         NodeList list = parent.getElementsByTagName("Generalization");
 
         for (i = 0; i < list.getLength(); i++) {
             Element rel = (Element) list.item(i);
-            // System.out.println((i + 1) + rel.getAttribute("id"));
+            System.out.println("generalizations = " + (i + 1) + rel.getAttribute("id"));
         }
-        return i / 2;
+        return i / 4;
     }
 }
-
-//}
