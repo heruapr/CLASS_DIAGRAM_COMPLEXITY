@@ -2,45 +2,69 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="405.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loc_predictor.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="405.0" prefWidth="700.0" style="-fx-background-color: #2b2a4c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loc_predictor.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <AnchorPane layoutX="14.0" layoutY="40.0" prefHeight="385.0" prefWidth="173.0" style="-fx-background-color: #9FEAF6;">
+      <AnchorPane layoutX="14.0" layoutY="40.0" prefHeight="385.0" prefWidth="173.0" style="-fx-background-color: #2b2a4c;">
          <children>
-            <Button fx:id="btn_upload" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#btn_upload" prefHeight="57.0" prefWidth="145.0" text="upload xml document" />
-            <Button fx:id="btn_calc" layoutX="16.0" layoutY="148.0" mnemonicParsing="false" onAction="#btn_calc" prefHeight="32.0" prefWidth="145.0" text="Calculate" />
-            <Label fx:id="L_file" layoutX="17.0" layoutY="102.0" prefHeight="18.0" prefWidth="145.0" text="file.xml" />
+            <Button fx:id="btn_upload" layoutX="17.0" layoutY="25.0" mnemonicParsing="false" onAction="#btn_upload" prefHeight="82.0" prefWidth="145.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/SECOND%20DRIVE/KULIAH/SEM.8/INDUKSI%20RISET+PROGRESS/app/iconfinder_export-share-upload_2931143.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btn_calc" layoutX="12.0" layoutY="147.0" mnemonicParsing="false" onAction="#btn_calc" prefHeight="93.0" prefWidth="152.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="86.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="file:/C:/SECOND%20DRIVE/KULIAH/SEM.8/INDUKSI%20RISET+PROGRESS/app/iconfinder_paste-clipboard-copy_2931174.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Label fx:id="L_file" layoutX="70.0" layoutY="107.0" prefHeight="18.0" prefWidth="145.0" style="-fx-text-fill: white; -fx-font-family: Impact;" text="file.xml" />
+            <Label layoutX="48.0" layoutY="240.0" prefHeight="20.0" prefWidth="80.0" style="-fx-text-fill: white; -fx-font-family: Impact;" text="     CALCULATE" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="196.0" layoutY="40.0" prefHeight="365.0" prefWidth="493.0">
+      <AnchorPane layoutX="196.0" layoutY="40.0" prefHeight="365.0" prefWidth="493.0" style="-fx-background-color: white;">
          <children>
-            <AnchorPane layoutX="330.0" layoutY="275.0" prefHeight="110.0" prefWidth="152.0" style="-fx-background-color: #9FEAF6;">
+            <AnchorPane layoutX="228.0" layoutY="275.0" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #9FEAF6;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="5.0" prefHeight="18.0" prefWidth="127.0" text="LOC ESTIMATION" />
-                  <Label fx:id="L_est" alignment="CENTER" layoutX="-1.0" layoutY="52.0" prefHeight="18.0" prefWidth="152.0" text="est" textAlignment="CENTER" />
-                  <Label layoutX="36.0" layoutY="70.0" text="Lines of Code" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="5.0" prefHeight="18.0" prefWidth="127.0" style="-fx-font-family: Impact; -fx-font-size: 15;" text="LOC ESTIMATION" />
+                  <Label fx:id="L_est" alignment="CENTER" layoutX="7.0" layoutY="37.0" prefHeight="18.0" prefWidth="265.0" style="-fx-font-family: Impact; -fx-font-size: 30;" text="est" textAlignment="CENTER" />
+                  <Label layoutX="96.0" layoutY="75.0" style="-fx-font-family: Courier New;" text="Lines of Code" />
                </children>
             </AnchorPane>
-            <Label layoutX="34.0" layoutY="24.0" text="Classes" />
-            <Label layoutX="34.0" layoutY="109.0" text="Attributes (Average)" />
-            <Label layoutX="179.0" layoutY="109.0" text="Constructors (Average)" />
-            <Label layoutX="328.0" layoutY="109.0" text="Get Methods (Average)" />
-            <Label layoutX="34.0" layoutY="192.0" text="Generalization" />
-            <Label layoutX="179.0" layoutY="192.0" text="Associations" />
-            <Label fx:id="L_class" layoutX="34.0" layoutY="53.0" text="0" />
-            <Label fx:id="L_methods" layoutX="179.0" layoutY="53.0" text="0" />
-            <Label fx:id="L_set" layoutX="329.0" layoutY="53.0" text="0" />
-            <Label fx:id="L_attr" layoutX="34.0" layoutY="138.0" text="0" />
-            <Label fx:id="L_cons" layoutX="179.0" layoutY="138.0" text="0" />
-            <Label fx:id="L_get" layoutX="329.0" layoutY="138.0" text="0" />
-            <Label fx:id="L_gen" layoutX="34.0" layoutY="221.0" text="0" />
-            <Label fx:id="L_assoc" layoutX="179.0" layoutY="221.0" text="0" />
-            <Label layoutX="179.0" layoutY="24.0" text="Methods (Average)" />
-            <Label layoutX="328.0" layoutY="24.0" text="Set Methods (Average)" />
+            <Label layoutX="34.0" layoutY="24.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Classes" />
+            <Label layoutX="34.0" layoutY="109.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Attributes (Average)" />
+            <Label layoutX="179.0" layoutY="109.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Constructors (Average)" />
+            <Label layoutX="334.0" layoutY="109.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Get Methods (Average)" />
+            <Label layoutX="34.0" layoutY="192.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Generalization" />
+            <Label layoutX="179.0" layoutY="192.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Associations" />
+            <Label fx:id="L_class" layoutX="34.0" layoutY="53.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_methods" layoutX="179.0" layoutY="53.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_set" layoutX="329.0" layoutY="53.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_attr" layoutX="34.0" layoutY="138.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_cons" layoutX="179.0" layoutY="138.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_get" layoutX="329.0" layoutY="138.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_gen" layoutX="34.0" layoutY="221.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label fx:id="L_assoc" layoutX="179.0" layoutY="221.0" style="-fx-font-family: Impact; -fx-font-size: 40;" text="0" />
+            <Label layoutX="179.0" layoutY="24.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Methods (Average)" />
+            <Label layoutX="333.0" layoutY="24.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Set Methods (Average)" />
          </children>
       </AnchorPane>
       <Label layoutX="282.0" layoutY="14.0" text="LINE OF CODE PREDICTOR" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <ImageView disable="true" fitHeight="700.0" fitWidth="740.0" layoutY="-275.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/SECOND%20DRIVE/KULIAH/SEM.8/INDUKSI%20RISET+PROGRESS/app/connections-blue-background/90949.jpg" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
