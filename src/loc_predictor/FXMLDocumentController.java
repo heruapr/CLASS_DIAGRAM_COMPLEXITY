@@ -1,9 +1,12 @@
 package loc_predictor;
 
+import controller.calculate_LOC;
+import controller.fileBrowser;
 import controller.xmlReader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,8 +18,8 @@ import javafx.scene.input.MouseEvent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
-import model.getResultLOC;
-import model.getResultsMetrics;
+import model.ResultLOC;
+import model.ResultsMetrics;
 import org.xml.sax.SAXException;
 
 /**
@@ -27,10 +30,9 @@ import org.xml.sax.SAXException;
 public class FXMLDocumentController implements Initializable {
 
     xmlReader reader = new xmlReader();
-    getResultLOC resultLOC = new getResultLOC();
-    //calculate_LOC cal = new calculate_LOC();
-
-    getResultsMetrics result = new getResultsMetrics();
+    calculate_LOC cal = new calculate_LOC();
+    ResultLOC resultLOC = new ResultLOC();
+    ResultsMetrics result = new ResultsMetrics();
 
     @FXML
     private Label label;
@@ -70,36 +72,36 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        reader.setDir(dir);
-
     }
 
     @FXML
     private void btn_upload(ActionEvent event) throws ParserConfigurationException, IOException, SAXException, IllegalArgumentException {
-        JFileChooser jfc = new JFileChooser();
-        jfc.showOpenDialog(null);
-        //jfc.setFileFilter(new FileNameExtensionFilter("Document File", "xml"));
-
-        File file = jfc.getSelectedFile();
-        dir = file.getAbsolutePath();
-        reader.setDir(dir);
-        L_file.setText(file.getName());
-
+        fileBrowser path = new fileBrowser();
+        L_file.setText(path.getFileName());
     }
 
     @FXML
     private void btn_calc(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
-//        reader.JMethods();
-//        reader.Nconstructor();
+
+        reader.JMethods();
+        reader.Nconstructor();
+        reader.Nasso();
+        reader.Ngener();
+        reader.avgAttributes();
+        reader.sumClasses();
+        reader.Nmethods();
+
+        int range = 2;
+        double temp = Math.pow(10, range);
 
         int classes = result.getClasses();
-        double attr = result.getAttr();
-        int assoc = result.getAssoc();
-        int gener = result.getGener();
-        double methods = result.getMethods();
-        double set = result.getSet();
-        double get = result.getGet();
-        double cons = result.getCons();
+        double attr = Math.round(temp * result.getAttr()) / temp;
+        int assoc = (int) ((int) Math.round(temp * result.getAssoc()) / temp);
+        int gener = (int) ((int) Math.round(temp * result.getGener()) / temp);
+        double methods = Math.round(temp * result.getMethods()) / temp;
+        double set = Math.round(temp * result.getSet()) / temp;
+        double get = Math.round(temp * result.getGet()) / temp;
+        double cons = Math.round(temp * result.getCons()) / temp;
 
         String sClass = Integer.toString(classes);
         String Sattr = Double.toString(attr);
@@ -119,9 +121,9 @@ public class FXMLDocumentController implements Initializable {
         L_get.setText(Sget);
         L_cons.setText(Scons);
 
-        //estimasi loc 
+        //estimasi loc ///
+        cal.calculate();
         L_est.setText(Integer.toString(resultLOC.getEst()));
-        //System.out.println(cal.calculate());
-    }
 
+    }
 }

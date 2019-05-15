@@ -191,6 +191,7 @@ public class xmlReader {
             }
         }
         //System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
+        //
         xmlReader.avgCons = (double) cons / (double) sumClasses();
         result.setCons(avgCons);
     }

@@ -2,17 +2,20 @@ package controller;
 
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
-import model.getResultsMetrics;
+import model.ResultLOC;
+import model.ResultsMetrics;
 import org.xml.sax.SAXException;
 
 /**
  *
  * @author HP PC
  */
+//
 public class calculate_LOC {
 
     //xmlReader reader = new xmlReader();
-    getResultsMetrics result = new getResultsMetrics();
+    ResultsMetrics result = new ResultsMetrics();
+    ResultLOC res = new ResultLOC();
 
     public int calculate() throws ParserConfigurationException, IOException, SAXException {
 
@@ -29,7 +32,7 @@ public class calculate_LOC {
                 + (142.469 * attr) - (3812.501 * methods) + (8596.627 * set)
                 + (6611.383 * cons) + (7166.288 * (double) gener) - (318.648 * (double) assoc);
         est = (int) estTemp;
-
-        return est;
+        res.setEst(est);
+        return est;   
     }
 }

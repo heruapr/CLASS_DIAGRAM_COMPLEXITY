@@ -1,4 +1,3 @@
-
 package model;
 
 import controller.calculate_LOC;
@@ -9,15 +8,17 @@ import org.xml.sax.SAXException;
 /**
  *
  * @author HP PC
- */
-public class getResultLOC {
+ *///
+public class ResultLOC {
 
-    calculate_LOC cal = new calculate_LOC();
-    int est = 0;
+    private static int est;
 
-    public int getEst() throws ParserConfigurationException, IOException, SAXException {
-        est = cal.calculate();
+    public int getEst() {
         return est;
+    }
+    public void setEst(int est) {
+        ResultLOC.est = est;
+        System.out.println(est);
     }
 
 }
