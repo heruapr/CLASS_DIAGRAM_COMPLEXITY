@@ -10,14 +10,16 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import model.ResultsMetrics;
 
 public class xmlReader {
 
     static String dir;
-    public static double avgCons;
-    public static double avgSet;
-    public static double avgGet;
-    static double avgMethod;
+    private static double avgCons;
+    private static double avgSet;
+    private static double avgGet;
+    private static double avgMethod;
+    ResultsMetrics result = new ResultsMetrics();
 
     public static void setDir(String dir) {
         xmlReader.dir = dir;
@@ -43,7 +45,7 @@ public class xmlReader {
 //        Nconstructor();
     //}
     // NUMBER OF CLASSES
-    public static int sumClasses() throws ParserConfigurationException,
+    public int sumClasses() throws ParserConfigurationException,
             IOException, SAXException {
         //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
         File file = new File(dir);
@@ -55,15 +57,16 @@ public class xmlReader {
         int i;
         for (i = 0; i < list.getLength(); i++) {
             Element classes = (Element) list.item(i);
-            System.out.println("classes =" + (i + 1) + classes.getAttribute("Name"));
-
+            // System.out.println("classes =" + (i + 1) + classes.getAttribute("Name"));
         }
-        System.out.println(i);
+        //System.out.println(i);
+        result.setClasses(i);
+        //System.out.println(i);
         return i;
     }
 
     // NUMBER OF Attributes
-    public static double avgAttributes() throws ParserConfigurationException,
+    public double avgAttributes() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
         // File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -77,14 +80,15 @@ public class xmlReader {
 
         for (i = 0; i < list.getLength(); i++) {
             Element attr = (Element) list.item(i);
-            System.out.println("attributes" + (i + 1) + attr.getAttribute("Name"));
+            //System.out.println("attributes" + (i + 1) + attr.getAttribute("Name"));
         }
         double avg = (double) i / (double) sumClasses();
+        result.setAttr(avg);
         return avg;
     }
 
     // NUMBER OF METHODS
-    public static double Nmethods() throws ParserConfigurationException,
+    public double Nmethods() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
 //        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -98,14 +102,15 @@ public class xmlReader {
 
         for (i = 0; i < list.getLength(); i++) {
             Element methods = (Element) list.item(i);
-            System.out.println("method = " + (i + 1) + methods.getAttribute("Name"));
+            // System.out.println("method = " + (i + 1) + methods.getAttribute("Name"));
         }
         xmlReader.avgMethod = (double) i / (double) sumClasses();
+        result.setMethods(avgMethod);
         return xmlReader.avgMethod;
     }
 
     //jenis method setter,getter
-    public static void JMethods() throws ParserConfigurationException,
+    public void JMethods() throws ParserConfigurationException,
             IOException, SAXException {
 //        File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
         File file = new File(dir);
@@ -132,21 +137,22 @@ public class xmlReader {
             } else if (arr[i].substring(0, 3).equalsIgnoreCase("get")) {
                 getter = arr[i];
                 get++;
-                System.out.println("Mengandung get : " + getter);
+                // System.out.println("Mengandung get : " + getter);
 
             }
         }
         //System.out.println("Mengandung set : " + setter);
-        System.out.println(set + "   " + get);
+        // System.out.println(set + "   " + get);
         xmlReader.avgSet = (double) set / (double) sumClasses();
         xmlReader.avgGet = (double) get / (double) sumClasses();
-
-        System.out.println("getter : " + avgSet);
-        System.out.println("setter : " + avgGet);
+        //System.out.println("getter : " + avgSet);
+        //System.out.println("setter : " + avgGet);
+        result.setGet(avgGet);
+        result.setSet(avgSet);
     }
 
     //JUMLAH CONSTRUCTOR
-    public static void Nconstructor() throws ParserConfigurationException,
+    public void Nconstructor() throws ParserConfigurationException,
             IOException, SAXException {
         //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
         File file = new File(dir);
@@ -184,12 +190,13 @@ public class xmlReader {
                 }
             }
         }
-        System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
+        //System.out.println("KETEMU CONSTRUCTOR SEBANYAK : " + cons);
         xmlReader.avgCons = (double) cons / (double) sumClasses();
+        result.setCons(avgCons);
     }
 
     // Association
-    public static int Nasso() throws ParserConfigurationException,
+    public int Nasso() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
         //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -205,11 +212,13 @@ public class xmlReader {
             Element rel = (Element) list.item(i);
             // System.out.println("association = "+(i + 1) + rel.getAttribute("id"));
         }
+        int assoc = i / 2;
+        result.setAssoc(assoc);
         return i / 2;
     }
 
     // Generalization
-    public static int Ngener() throws ParserConfigurationException,
+    public int Ngener() throws ParserConfigurationException,
             IOException, SAXException {
         int i;
         //File file = new File("/C:/SECOND DRIVE/KULIAH/SEM.8/project.xml");
@@ -223,8 +232,10 @@ public class xmlReader {
 
         for (i = 0; i < list.getLength(); i++) {
             Element rel = (Element) list.item(i);
-            System.out.println("generalizations = " + (i + 1) + rel.getAttribute("id"));
+            //System.out.println("generalizations = " + (i + 1) + rel.getAttribute("id"));
         }
+        int gener = i / 4;
+        result.setGener(gener);
         return i / 4;
     }
 }
