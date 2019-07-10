@@ -8,8 +8,14 @@ package controller;
 import static controller.xmlReader.dir;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,10 +31,15 @@ import org.xml.sax.SAXException;
  */
 public class matrixController {
 
+//displaying list
+        ArrayList<String> list_classes = new ArrayList();
+        public static ObservableList items = FXCollections.observableArrayList();
+        ResultsMetrics result = new ResultsMetrics();
+
     Element classes;
     Element association;
     public static String highestMaintain;
-    public static int roc,ric;
+    public static int roc, ric;
 
     xmlReader reader = new xmlReader();
 
@@ -544,7 +555,7 @@ public class matrixController {
             System.out.println("ROC = " + maxRoc[i]);
             sumRoc = 0;
         }
-
+        
         //DETECTING THE MAX VALUE
         int tempRic = 0;
         int tempRoc = 0;
@@ -558,21 +569,26 @@ public class matrixController {
                 tempRoc = maxRoc[i];
                 indexRoc = i;
             }
+           
+            list_classes.add(i+1+". Class Name : "+matrix2[2][i] + " > NILAI RC = " + Integer.toString(tempRic) + " NILAI ROC = " + Integer.toString(tempRoc));
         }
 
+        //ADDING VIEWBOX LIST CLASS
+        items.removeAll(items);
+        items.addAll(list_classes);
+       
         //LAST RESULT
         System.out.println("=====================RESULT========================");
         System.out.println("1. CLASS WITH THE HIGHEST MAINTAINABILITY LEVEL  " + matrix2[2][indexRoc] + " WITH ROC LEVEL = " + tempRoc);
         System.out.println("2. CLASS WITH THE HIGHEST MAINTAINABILITY LEVEL  " + matrix2[2][indexRoc] + " WITH RIC LEVEL = " + tempRic);
-        if(tempRoc>tempRic){
-        highestMaintain = matrix2[2][indexRoc];
-        }
-        else{
-         highestMaintain = matrix2[2][indexRic];
+
+        if (tempRoc > tempRic) {
+            highestMaintain = matrix2[2][indexRoc];
+        } else {
+            highestMaintain = matrix2[2][indexRic];
         }
         roc = tempRoc;
         ric = tempRic;
-        
 
         System.out.println("========ASCENDING LIST========");
         for (i = 0; i < ordo; i++) {
