@@ -8,6 +8,8 @@ package controller;
 import static controller.xmlReader.dir;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -25,6 +27,8 @@ public class matrixController {
 
     Element classes;
     Element association;
+    public static String highestMaintain;
+    public static int roc,ric;
 
     xmlReader reader = new xmlReader();
 
@@ -313,7 +317,7 @@ public class matrixController {
             for (j = 0; j < ordo; j++) {
                 matrixLongestD[i][j] = 0;
 
-                 System.out.print(matrixLongestD[i][j] + " ");
+                System.out.print(matrixLongestD[i][j] + " ");
             }
             System.out.println("");
         }
@@ -496,6 +500,7 @@ public class matrixController {
             System.out.println("");
         }
 
+        //MULTIPLYING THE MATRIX
         int x = ordo, y = ordo, p = ordo, q = ordo, sum = 0, c, d, k;
         for (c = 0; c < x; c++) {
             for (d = 0; d < q; d++) {
@@ -516,24 +521,67 @@ public class matrixController {
             }
             System.out.println("");
         }
-
         //CALCULATE THE LAST RESULT (MAXROC, MAXRIC)
         System.out.println("======CALCULATING THE RESULTS=========");
         int maxRoc[] = new int[ordo];
         int maxRic[] = new int[ordo];
-
-        for (i = 0; i < ordo; i++) {
-            for (j = 0; j < ordo; j++) {
-                maxRic[i] = matrixLongestD[j][i] + matrixLongestD[j][i];
+        int sumRic = 0, sumRoc = 0;
+        for (i = 0; i < (ordo); i++) {
+            for (j = 0; j < (ordo); j++) {
+                sumRic = sumRic + matrixLongestD[j][i];
             }
+            maxRic[i] = sumRic;
             System.out.print("RIC = " + maxRic[i]);
+            sumRic = 0;
         }
-        for (i = 0; i < ordo; i++) {
-            for (j = 0; j < ordo; j++) {
-                maxRoc[i] = matrixLongestD[i][j] + matrixLongestD[j][(i)];
+        System.out.println("===ROC&RIC===");
 
+        for (i = 0; i < (ordo); i++) {
+            for (j = 0; j < (ordo); j++) {
+                sumRoc = sumRoc + matrixLongestD[i][j];
             }
+            maxRoc[i] = sumRoc;
             System.out.println("ROC = " + maxRoc[i]);
+            sumRoc = 0;
         }
+
+        //DETECTING THE MAX VALUE
+        int tempRic = 0;
+        int tempRoc = 0;
+        int indexRoc = 0;
+        int indexRic = 0;
+        for (i = 0; i < ordo; i++) {
+            if (maxRic[i] > tempRic) {
+                tempRic = maxRic[i];
+                indexRic = i;
+            } else if (maxRoc[i] > tempRoc) {
+                tempRoc = maxRoc[i];
+                indexRoc = i;
+            }
+        }
+
+        //LAST RESULT
+        System.out.println("=====================RESULT========================");
+        System.out.println("1. CLASS WITH THE HIGHEST MAINTAINABILITY LEVEL  " + matrix2[2][indexRoc] + " WITH ROC LEVEL = " + tempRoc);
+        System.out.println("2. CLASS WITH THE HIGHEST MAINTAINABILITY LEVEL  " + matrix2[2][indexRoc] + " WITH RIC LEVEL = " + tempRic);
+        if(tempRoc>tempRic){
+        highestMaintain = matrix2[2][indexRoc];
+        }
+        else{
+         highestMaintain = matrix2[2][indexRic];
+        }
+        roc = tempRoc;
+        ric = tempRic;
+        
+
+        System.out.println("========ASCENDING LIST========");
+        for (i = 0; i < ordo; i++) {
+            Arrays.sort(maxRic);
+            Arrays.sort(maxRoc);
+        }
+        System.out.print("RIC =" + Arrays.toString(maxRic));
+        System.out.println("================");
+        System.out.print("RIC =" + Arrays.toString(maxRoc));
     }
+
 }

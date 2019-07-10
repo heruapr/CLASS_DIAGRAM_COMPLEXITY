@@ -26,6 +26,6 @@ public class LOC_PREDICTOR extends Application {
     //
     public static void main(String[] args) {
         launch(args);
-
+            
     }
 }

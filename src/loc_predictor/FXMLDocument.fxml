@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="405.0" prefWidth="700.0" style="-fx-background-color: #2b2a4c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loc_predictor.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="474.0" prefWidth="700.0" style="-fx-background-color: #2b2a4c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loc_predictor.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <AnchorPane layoutX="14.0" layoutY="40.0" prefHeight="385.0" prefWidth="173.0" style="-fx-background-color: #2b2a4c;">
+      <AnchorPane layoutX="14.0" layoutY="40.0" prefHeight="434.0" prefWidth="215.0" style="-fx-background-color: #2b2a4c;">
          <children>
             <Button fx:id="btn_upload" layoutX="17.0" layoutY="25.0" mnemonicParsing="false" onAction="#btn_upload" prefHeight="82.0" prefWidth="145.0" style="-fx-background-color: transparent;">
                <graphic>
@@ -32,13 +32,19 @@
             <Label layoutX="48.0" layoutY="240.0" prefHeight="20.0" prefWidth="80.0" style="-fx-text-fill: white; -fx-font-family: Impact;" text="     CALCULATE" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="196.0" layoutY="40.0" prefHeight="365.0" prefWidth="493.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="196.0" layoutY="40.0" prefHeight="434.0" prefWidth="500.0" style="-fx-background-color: white;">
          <children>
-            <AnchorPane layoutX="228.0" layoutY="275.0" prefHeight="110.0" prefWidth="265.0" style="-fx-background-color: #9FEAF6;">
+            <AnchorPane layoutY="275.0" prefHeight="191.0" prefWidth="500.0" style="-fx-background-color: #9FEAF6;">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="5.0" prefHeight="18.0" prefWidth="127.0" style="-fx-font-family: Impact; -fx-font-size: 15;" text="LOC ESTIMATION" />
-                  <Label fx:id="L_est" alignment="CENTER" layoutX="7.0" layoutY="37.0" prefHeight="18.0" prefWidth="265.0" style="-fx-font-family: Impact; -fx-font-size: 30;" text="est" textAlignment="CENTER" />
-                  <Label layoutX="96.0" layoutY="75.0" style="-fx-font-family: Courier New;" text="Lines of Code" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="-1.0" prefHeight="35.0" prefWidth="203.0" style="-fx-font-family: Impact; -fx-font-size: 15;" text=" LOC ESTIMATION" textAlignment="CENTER" />
+                  <Label fx:id="L_est" alignment="CENTER" layoutX="298.0" layoutY="37.0" prefHeight="24.0" prefWidth="192.0" style="-fx-font-family: Impact; -fx-font-size: 20;" text="est" textAlignment="CENTER" />
+                  <Label layoutX="340.0" layoutY="75.0" prefHeight="17.0" prefWidth="152.0" style="-fx-font-family: Courier New;" text="(OVERALL ESTIMATION)" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="274.0" style="-fx-font-family: Impact; -fx-font-size: 15;" text="CLASS WITH THE HIGHEST EFFORT TO MAINTAIN" />
+                  <Label fx:id="L_highest_class" alignment="CENTER" layoutY="21.0" prefHeight="75.0" prefWidth="274.0" style="-fx-font-family: Impact; -fx-font-size: 25;" text="class" textAlignment="CENTER" />
+                  <Label layoutX="15.0" layoutY="113.0" prefHeight="75.0" prefWidth="132.0" style="-fx-font-family: impact; -fx-font-size: 20;" text="maxROC value:" />
+                  <Label fx:id="L_roc" layoutX="66.0" layoutY="141.0" prefHeight="75.0" prefWidth="81.0" style="-fx-font-family: impact; -fx-font-size: 30;" text="0" />
+                  <Label layoutX="262.0" layoutY="104.0" prefHeight="94.0" prefWidth="120.0" style="-fx-font-family: impact; -fx-font-size: 20;" text="maxRIC value:" />
+                  <Label fx:id="L_RIC" layoutX="314.0" layoutY="132.0" prefHeight="94.0" prefWidth="92.0" style="-fx-font-family: impact; -fx-font-size: 30;" text="0" />
                </children>
             </AnchorPane>
             <Label layoutX="34.0" layoutY="24.0" style="-fx-font-family: &quot;Comic Sans MS&quot;, cursive, sans-serif;" text="Classes" />
@@ -61,10 +67,11 @@
       </AnchorPane>
       <Label layoutX="282.0" layoutY="14.0" text="LINE OF CODE PREDICTOR" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <ImageView disable="true" fitHeight="700.0" fitWidth="740.0" layoutY="-275.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+      <ImageView disable="true" fitHeight="752.0" fitWidth="700.0" layoutY="-275.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/SECOND%20DRIVE/KULIAH/SEM.8/INDUKSI%20RISET+PROGRESS/app/connections-blue-background/90949.jpg" />
          </image>
       </ImageView>
+      <Label text="Label" />
     </children>
 </AnchorPane>

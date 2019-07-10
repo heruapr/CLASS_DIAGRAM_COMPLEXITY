@@ -2,6 +2,7 @@ package loc_predictor;
 
 import controller.calculate_LOC;
 import controller.fileBrowser;
+import controller.matrixController;
 import controller.xmlReader;
 import java.io.File;
 import java.io.IOException;
@@ -33,13 +34,12 @@ public class FXMLDocumentController implements Initializable {
     calculate_LOC cal = new calculate_LOC();
     ResultLOC resultLOC = new ResultLOC();
     ResultsMetrics result = new ResultsMetrics();
+    matrixController matrix = new matrixController();
 
     @FXML
     private Label label;
     @FXML
     private Button btn_upload;
-    @FXML
-    private ProgressIndicator progressBar;
     @FXML
     private Button btn_calc;
     @FXML
@@ -64,6 +64,12 @@ public class FXMLDocumentController implements Initializable {
     private Label L_assoc;
 
     String dir;
+    @FXML
+    private Label L_highest_class;
+    @FXML
+    private Label L_roc;
+    @FXML
+    private Label L_RIC;
 
     /**
      * Initializes the controller class.
@@ -78,6 +84,7 @@ public class FXMLDocumentController implements Initializable {
     private void btn_upload(ActionEvent event) throws ParserConfigurationException, IOException, SAXException, IllegalArgumentException {
         fileBrowser path = new fileBrowser();
         L_file.setText(path.getFileName());
+        
     }
 
     @FXML
@@ -90,8 +97,10 @@ public class FXMLDocumentController implements Initializable {
         reader.avgAttributes();
         reader.sumClasses();
         reader.Nmethods();
+        matrix.makeMatrix();
 
         int range = 2;
+        int indexClass=0;
         double temp = Math.pow(10, range);
 
         int classes = result.getClasses();
@@ -111,7 +120,7 @@ public class FXMLDocumentController implements Initializable {
         String Sset = Double.toString(set);
         String Sget = Double.toString(get);
         String Scons = Double.toString(cons);
-
+       
         L_class.setText(sClass);
         L_attr.setText(Sattr);
         L_assoc.setText(asso);
@@ -120,10 +129,18 @@ public class FXMLDocumentController implements Initializable {
         L_set.setText(Sset);
         L_get.setText(Sget);
         L_cons.setText(Scons);
+        
+        L_highest_class.setText(matrix.highestMaintain);
+        L_roc.setText(Integer.toString(matrix.roc));
+        L_RIC.setText(Integer.toString(matrix.ric));
 
         //estimasi loc ///
         cal.calculate();
         L_est.setText(Integer.toString(resultLOC.getEst()));
+        System.out.println(resultLOC.getEst());
+        
+        matrixController mat = new matrixController();
+        mat.makeMatrix();
 
     }
 }

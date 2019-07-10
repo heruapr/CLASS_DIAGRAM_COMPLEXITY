@@ -8,6 +8,7 @@ package controller;
 import static controller.xmlReader.dir;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -24,7 +25,14 @@ public class fileBrowser {
     }
 
     public fileBrowser() {
+                
+        
         JFileChooser jfc = new JFileChooser();
+        FileNameExtensionFilter xmlfilter = new FileNameExtensionFilter(
+         "xml files (*.xml)", "xml");
+        jfc.setDialogTitle("Open schedule file");
+        // set selected filter
+        jfc.setFileFilter(xmlfilter);
         jfc.showOpenDialog(null);
         //jfc.setFileFilter(new FileNameExtensionFilter("Document File", "xml"));
 

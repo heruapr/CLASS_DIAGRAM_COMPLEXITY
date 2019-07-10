@@ -9,14 +9,23 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author HP PC
+ * @author HP
  *///
 public class ResultsMetrics {
 
     //calculate_LOC cal = new calculate_LOC();
     //xmlReader reader = new xmlReader();
 
-     private static int classes, gener, assoc;
+     private static int classes, gener, assoc,class_index, class_name;
+     
+
+    public static int getClass_index() {
+        return class_index;
+    }
+
+    public static void setClass_index(int class_index) {
+        ResultsMetrics.class_index = class_index;
+    }
      private static double methods, set, get, cons, attr;
 
     public int getClasses() {
