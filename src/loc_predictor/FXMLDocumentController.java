@@ -12,10 +12,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
@@ -70,6 +73,13 @@ public class FXMLDocumentController implements Initializable {
     private Label L_roc;
     @FXML
     private Label L_RIC;
+    @FXML
+    private Label L_file1;
+    private VBox my_viewbox;
+    @FXML
+    private ListView<String> my_listview;
+    @FXML
+    private VBox my_vbox;
 
     /**
      * Initializes the controller class.
@@ -84,12 +94,12 @@ public class FXMLDocumentController implements Initializable {
     private void btn_upload(ActionEvent event) throws ParserConfigurationException, IOException, SAXException, IllegalArgumentException {
         fileBrowser path = new fileBrowser();
         L_file.setText(path.getFileName());
-        
     }
 
     @FXML
     private void btn_calc(ActionEvent event) throws ParserConfigurationException, IOException, SAXException {
-
+        
+        
         reader.JMethods();
         reader.Nconstructor();
         reader.Nasso();
@@ -98,6 +108,7 @@ public class FXMLDocumentController implements Initializable {
         reader.sumClasses();
         reader.Nmethods();
         matrix.makeMatrix();
+        
 
         int range = 2;
         int indexClass=0;
@@ -133,14 +144,20 @@ public class FXMLDocumentController implements Initializable {
         L_highest_class.setText(matrix.highestMaintain);
         L_roc.setText(Integer.toString(matrix.roc));
         L_RIC.setText(Integer.toString(matrix.ric));
-
+        
+        //vbox list
+          my_listview.getItems().addAll(matrix.items);
+        //}
+          my_vbox.getChildren().addAll(my_listview);
+       
+        
         //estimasi loc ///
         cal.calculate();
         L_est.setText(Integer.toString(resultLOC.getEst()));
         System.out.println(resultLOC.getEst());
         
-        matrixController mat = new matrixController();
-        mat.makeMatrix();
+//        matrixController mat = new matrixController();
+//        mat.makeMatrix();
 
     }
 }

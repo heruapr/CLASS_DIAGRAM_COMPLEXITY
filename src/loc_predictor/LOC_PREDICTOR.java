@@ -1,17 +1,21 @@
 package loc_predictor;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import model.ResultsMetrics;
 
 /**
  *
  * @author HP PC
  */
 public class LOC_PREDICTOR extends Application {
-
+    
+ 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
