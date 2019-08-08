@@ -1,0 +1,6 @@
+Folder,Files,LOC,SLOC-P,SLOC-L,MVG,BLOC,C&SLOC,CLOC,CWORD,HCLOC,HCWORD
+Total,7,611,424,341,29,95,1,92,287,5,31
+C:\Users\HP PC\Documents\NetBeansProjects\LOC_PREDICTOR\src,7,611,424,341,29,95,1,92,287,5,31
+C:\Users\HP PC\Documents\NetBeansProjects\LOC_PREDICTOR\src\controller,3,337,229,191,20,44,1,64,226,5,31
+C:\Users\HP PC\Documents\NetBeansProjects\LOC_PREDICTOR\src\loc_predictor,2,163,122,97,0,23,0,18,38,0,0
+C:\Users\HP PC\Documents\NetBeansProjects\LOC_PREDICTOR\src\model,2,111,73,53,9,28,0,10,23,0,0
