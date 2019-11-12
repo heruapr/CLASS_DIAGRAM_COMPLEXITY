@@ -1,4 +1,4 @@
-# LOC_PREDICTOR
+# CLASSDIAGRAM_COMPLEXITY
 a desktop application for measuring the complexity of class diagram and predicting a software (written in java)  size based on the class diagram design
 
 note : 
